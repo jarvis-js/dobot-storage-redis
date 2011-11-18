@@ -30,7 +30,7 @@ RedisStorage.prototype.init = function(callback) {
 
 RedisStorage.prototype.load = function(key, callback) {
 	this.connection.get(this.options.key_prefix + key, function(error, data) {
-		var loaded = undefined;
+		var loaded = null;
 		if (!error) {
 			try {
 				loaded = JSON.parse(data);
