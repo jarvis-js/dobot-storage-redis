@@ -23,7 +23,7 @@ RedisStorage.prototype.init = function(callback) {
 	if (this.options.password) {
 		this.connection.auth(this.options.password);
 	}
-	if (callback) {
+	if (typeof callback === 'function') {
 		callback();
 	}
 }
@@ -39,13 +39,15 @@ RedisStorage.prototype.load = function(key, callback) {
 				// Not the end of the world.
 			}
 		}
-		callback(loaded);
+		if (typeof callback === 'function') {
+			callback(loaded);
+		}
 	});
 }
 
 RedisStorage.prototype.save = function(key, data, callback) {
 	this.connection.set(this.options.key_prefix + key, JSON.stringify(data));
-	if (callback) {
+	if (typeof callback === 'function') {
 		callback();
 	}
 }
