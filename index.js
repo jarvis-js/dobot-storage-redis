@@ -26,7 +26,7 @@ RedisStorage.prototype.init = function(callback) {
 	if (typeof callback === 'function') {
 		callback();
 	}
-}
+};
 
 RedisStorage.prototype.load = function(key, callback) {
 	this.connection.get(this.options.key_prefix + key, function(error, data) {
@@ -43,11 +43,11 @@ RedisStorage.prototype.load = function(key, callback) {
 			callback(loaded);
 		}
 	});
-}
+};
 
 RedisStorage.prototype.save = function(key, data, callback) {
 	this.connection.set(this.options.key_prefix + key, JSON.stringify(data));
 	if (typeof callback === 'function') {
 		callback();
 	}
-}
+};
